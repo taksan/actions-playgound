@@ -1,0 +1,12 @@
+name: 'release notes'
+on:
+  create:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug
+        run:
+          echo ${{ github.ref }}
+          echo ${{ github }}
