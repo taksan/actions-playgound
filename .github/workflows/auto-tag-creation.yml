@@ -2,8 +2,7 @@ name: auto-tag
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
