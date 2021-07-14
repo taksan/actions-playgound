@@ -1,12 +1,18 @@
-name: 'release notes'
+name: on-create-sample
+
 on:
   create:
-    tags:
 
 jobs:
-  debug:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world
+
       - name: debug
         run:
           echo ${{ github.ref }}
