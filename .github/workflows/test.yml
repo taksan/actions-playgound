@@ -3,7 +3,7 @@ name: on-create-sample
 on:
   push:
     tags:
-      - "v*"
+      - "*"
 
 jobs:
   build:
