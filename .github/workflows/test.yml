@@ -10,15 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build Changelog
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - run: |
+          echo ${{ github.ref }} >> README.md
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-artifact
+          path: "*.md"
+
+  release-notes:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release-artifact
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "README.md"
-          body: ${{steps.github_release.outputs.changelog}}
+          tag: ${{ needs.build.outputs.release-tag }}
+          artifacts: "*.md"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate release notes
+        uses: lakto/gren-action@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          options: '--override --prerelease'
