@@ -21,6 +21,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git
 
           commit_msg=$(git log --format=%B -n 1 ${{ github.event.after }}|sed 's/ *//g')
-          git checkout master
+
           git tag ${commit_msg} ${{ github.event.after }}
+
           git push origin ${commit_msg}
