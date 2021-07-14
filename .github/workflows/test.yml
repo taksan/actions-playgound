@@ -1,6 +1,7 @@
 name: 'release notes'
 on:
   create:
+    tags:
 
 jobs:
   debug:
