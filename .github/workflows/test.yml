@@ -29,7 +29,10 @@ jobs:
 
       - name: create tag name
         run:
-          echo "RELEASE_TAG="$(${{ github.ref }} | cut -d/ -f3) >> $GITHUB_ENV
+          RELEASE_TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
+
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
+
           echo $RELEASE_TAG
 
       - name: Create Release
