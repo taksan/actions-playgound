@@ -27,9 +27,15 @@ jobs:
         with:
           name: release-artifact
 
+      - name: create tag name
+        run:
+          echo "RELEASE_TAG="$(${{ github.ref }} | cut -d/ -f3) >> $GITHUB_ENV
+          echo $RELEASE_TAG
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          tag: ${{ env.RELEASE_TAG }}
           artifacts: "*.md"
           token: ${{ secrets.GITHUB_TOKEN }}
 
