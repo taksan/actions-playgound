@@ -12,11 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          echo ${{ github.ref }} >> README.md
+          mkdir foo
+          echo ${{ github.ref }} >> foo/README.md
+
       - uses: actions/upload-artifact@v2
         with:
           name: release-artifact
-          path: "*.md"
+          path: "foo/*.md"
 
   release-notes:
     needs: build
@@ -33,7 +35,7 @@ jobs:
 
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
-          echo $RELEASE_TAG
+          ls -lR
 
       - name: Create Release
         uses: ncipollo/release-action@v1
