@@ -40,6 +40,7 @@ jobs:
         with:
           tag: ${{ env.RELEASE_TAG }}
           artifacts: "*.md"
+          prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate release notes
@@ -47,4 +48,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          options: '--override --prerelease'
+          options: '--override'
