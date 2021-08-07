@@ -25,7 +25,6 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: 'issue-\d+'
           body-template: |
-            Merging into '${{ env.GITHUB_BASE_REF }}'
             ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/taksan/ebeaf38ec43a8e3c021a1c92126b49f9/raw/jira-worklog-grid__pull_${{ env.PR_NUMBER }}.json)
 
             Fixes #${{ env.ISSUE_NUMBER }}
