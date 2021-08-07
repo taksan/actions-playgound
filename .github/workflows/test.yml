@@ -13,10 +13,13 @@ jobs:
       - name: Ge PR number
         run: |
           #!/bin/bash
-          PR_NUMBER=$(echo "${{ github.ref }}" | cut -d/ -f3)
-          echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
+          env
+          echo "${{ github.ref }}"
           echo ${{ github.payload.pull_request.head.ref }}
           echo ${{ github.context.payload.pull_request.number }}
+
+          PR_NUMBER=$(echo "${{ github.ref }}" | cut -d/ -f3)
+          echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
           ISSUE_NUMBER=$(echo ${{ github.payload.pull_request.head.ref }} | cut -f- -d2)
           echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> $GITHUB_ENV
 
