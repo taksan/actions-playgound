@@ -9,7 +9,7 @@ jobs:
       - id: foo
         uses: taksan/commit-message-matcher@v1
         with:
-          pattern: 'fix spelling'
+          pattern: '\[skip-build\]|nothing'
       - run: echo ${{ steps.foo.outputs.matches }}
         shell: bash
       - id: foo2
