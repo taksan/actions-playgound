@@ -33,7 +33,7 @@ jobs:
           color: 'gray'
           namedLogo: Jasmine
 
-      - uses: taksan/compute-coverage-stats@master
+      - uses: taksan/compute-coverage-stats@main
         id: compute-coverage-stats
         with:
           coverageFile: unified.lcov
