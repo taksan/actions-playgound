@@ -12,11 +12,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-
-      - uses: taksan/compute-coverage-stats@v1
-        id: compute-coverage-stats
+      - uses: ./.github/worfklow/subaction
         with:
-          coverage-file: unified.lcov
-
-      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
-        shell: bash
+          pattern: "Seee me"
