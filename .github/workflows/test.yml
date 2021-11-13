@@ -33,8 +33,12 @@ jobs:
           color: 'gray'
           namedLogo: Jasmine
       - uses: taksan/hello-world-docker-action@v1
+        id: hello-world-docker-action
         with:
           who-to-greet: ${{ github.actor }}
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
 
       # - uses: taksan/compute-coverage-stats@v1
       #   id: compute-coverage-stats
