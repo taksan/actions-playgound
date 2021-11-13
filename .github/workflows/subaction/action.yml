@@ -9,5 +9,7 @@ runs:
   steps:
     - name: test interpolation
       run: |
+        echo ${{ format('{0}/{1}', inputs.folder, 'unified.lcov') }}
+        echo hashFiles(format('{0}/{1}', inputs.folder, 'unified.lcov'))
         echo ${{ runner.os }}-yarn-${{ hashFiles(format('{0}/{1}', inputs.folder, 'unified.lcov')) }}
       shell: bash
