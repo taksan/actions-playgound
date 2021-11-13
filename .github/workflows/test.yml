@@ -6,44 +6,17 @@ jobs:
     name: test matcher
     steps:
       - uses: actions/checkout@v2
-      - id: foo
-        uses: taksan/commit-message-matcher@v1
-        with:
-          pattern: '\[skip-build\]|nothing'
-      - run: echo ${{ steps.foo.outputs.matches }}
-        shell: bash
-      - id: foo2
-        uses: taksan/commit-message-matcher@v1
-        with:
-          pattern: 'whatever'
-      - run: echo ${{ steps.foo2.outputs.matches }}
-        shell: bash
 
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - uses: taksan/create-branch-badge@v1
+
+      - uses: taksan/compute-coverage-stats@v1
+        id: compute-coverage-stats
         with:
-          gistToken: ${{ secrets.GIST_SECRET }}
-          gistID: ebeaf38ec43a8e3c021a1c92126b49f9
-          label: Test Coverage
-          message: 'Waiting build'
-          color: 'gray'
-          namedLogo: Jasmine
-      - uses: taksan/hello-world-docker-action@v1
-        id: hello-world-docker-action
-        with:
-          who-to-greet: ${{ github.actor }}
+          coverage-file: unified.lcov
 
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-
-      # - uses: taksan/compute-coverage-stats@v1
-      #   id: compute-coverage-stats
-      #   with:
-      #     coverage-file: unified.lcov
-
-      # - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
-      #   shell: bash
+      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
+        shell: bash
