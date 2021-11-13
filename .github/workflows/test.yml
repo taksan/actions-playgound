@@ -19,6 +19,11 @@ jobs:
       - run: echo ${{ steps.foo2.outputs.matches }}
         shell: bash
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - uses: taksan/create-branch-badge@v1
         with:
           gistToken: ${{ secrets.GIST_SECRET }}
