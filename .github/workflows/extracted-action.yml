@@ -1,0 +1,13 @@
+name: 'Whatever'
+description: 'Check whether last commint message matches a given pattern'
+inputs:
+  pattern:
+    description: 'token to write to the gist'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Get branch name
+      id: branch-name-extract
+      run: |
+        echo "${{ inputs.pattern }}"

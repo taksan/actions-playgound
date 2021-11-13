@@ -15,3 +15,7 @@ jobs:
       - uses: ./.github/workflows/subaction
         with:
           pattern: "Seee me"
+
+      - uses: ./.github/workflows/extracted-action.yml
+        with:
+          pattern: "Seee me"
