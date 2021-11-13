@@ -32,11 +32,14 @@ jobs:
           message: 'Waiting build'
           color: 'gray'
           namedLogo: Jasmine
-
-      - uses: taksan/compute-coverage-stats@v1
-        id: compute-coverage-stats
+      - uses: taksan/hello-world-docker-action
         with:
-          coverage-file: unified.lcov
+          who-to-greet: ${{ github.actor }}
 
-      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
-        shell: bash
+      # - uses: taksan/compute-coverage-stats@v1
+      #   id: compute-coverage-stats
+      #   with:
+      #     coverage-file: unified.lcov
+
+      # - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
+      #   shell: bash
