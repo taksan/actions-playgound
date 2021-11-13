@@ -32,3 +32,11 @@ jobs:
           message: 'Waiting build'
           color: 'gray'
           namedLogo: Jasmine
+
+      - uses: taksan/compute-coverage-stats
+        id: compute-coverage-stats
+        with:
+          coverageFile: unified.lcov
+
+      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverageColor }}
+        shell: bash
