@@ -1,14 +1,13 @@
-name: 'Create coverage badge'
-description: 'Check whether last commint message matches a given pattern'
+name: 'cache yarn folder'
+description: 'Will cache the folder'
 inputs:
-  pattern:
-    description: 'token to write to the gist'
+  folder:
+    description: 'folder to cache'
     required: true
 runs:
   using: "composite"
   steps:
-    - name: Get branch name
-      id: branch-name-extract
+    - name: test interpolation
       run: |
-        echo "${{ inputs.pattern }}"
+        echo ${{ runner.os }}-yarn-${{ hashFiles(join(inputs.folder, '/', 'unified.lcov')) }}
       shell: bash
