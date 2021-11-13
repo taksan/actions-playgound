@@ -18,5 +18,5 @@ jobs:
         with:
           coverage-file: unified.lcov
 
-      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverageColor }}
+      - run: echo ${{ steps.compute-coverage-stats.outputs.coverage }} ${{ steps.compute-coverage-stats.outputs.coverage-color }}
         shell: bash
