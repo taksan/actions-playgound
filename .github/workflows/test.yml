@@ -9,12 +9,12 @@ jobs:
       - id: foo
         uses: taksan/commit-message-matcher@v1
         with:
-          pattern: 'added action test'
-      - run: echo ${{ steps.foo.outputs.match }}
+          pattern: 'fix spelling'
+      - run: echo ${{ steps.foo.outputs.matches }}
         shell: bash
       - id: foo2
         uses: taksan/commit-message-matcher@v1
         with:
           pattern: 'whatever'
-      - run: echo ${{ steps.foo2.outputs.match }}
+      - run: echo ${{ steps.foo2.outputs.matches }}
         shell: bash
