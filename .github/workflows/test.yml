@@ -21,7 +21,7 @@ jobs:
 
       - uses: taksan/create-branch-badge@v1
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          gistToken: ${{ secrets.GIST_SECRET }}
           gistID: ebeaf38ec43a8e3c021a1c92126b49f9
           label: Test Coverage
           message: 'Waiting build'
