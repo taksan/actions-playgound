@@ -16,5 +16,5 @@ jobs:
         uses: taksan/commit-message-matcher@v1
         with:
           pattern: 'whatever'
-      - run: echo ${{ steps.foo.outputs.match }}
+      - run: echo ${{ steps.foo2.outputs.match }}
         shell: bash
