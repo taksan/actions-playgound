@@ -1,53 +1,20 @@
-name: on-create-sample
-
-on:
-  push:
-    tags:
-      - "*"
+on: [push]
 
 jobs:
-  build:
+  hello_world_job:
     runs-on: ubuntu-latest
-
+    name: test matcher
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          mkdir foo
-          echo ${{ github.ref }} >> foo/README.md
-
-      - uses: actions/upload-artifact@v2
+      - id: foo
+        uses: taksan/commit-message-matcher@v1
         with:
-          name: release-artifact
-          path: "foo/*.md"
-
-  release-notes:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download release artifact
-        uses: actions/download-artifact@v2
+          pattern: 'added action test'
+      - run: echo ${{ steps.foo.outputs.match }}
+        shell: bash
+      - id: foo2
+        uses: taksan/commit-message-matcher@v1
         with:
-          name: release-artifact
-
-      - name: create tag name
-        run:
-          RELEASE_TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
-
-          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
-
-          ls -lR
-
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ env.RELEASE_TAG }}
-          artifacts: "*.md"
-          prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate release notes
-        uses: lakto/gren-action@v2.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          options: '--override'
+          pattern: 'whatever'
+      - run: echo ${{ steps.foo.outputs.match }}
+        shell: bash
