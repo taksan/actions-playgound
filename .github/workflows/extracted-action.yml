@@ -11,3 +11,4 @@ runs:
       id: branch-name-extract
       run: |
         echo "${{ inputs.pattern }}"
+      shell: bash
