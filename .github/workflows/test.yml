@@ -12,6 +12,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - uses: ./.github/worfklows/subaction
+      - uses: ./.github/workflows/subaction
         with:
           pattern: "Seee me"
