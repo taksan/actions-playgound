@@ -32,7 +32,7 @@ jobs:
           message: 'Waiting build'
           color: 'gray'
           namedLogo: Jasmine
-      - uses: taksan/hello-world-docker-action
+      - uses: taksan/hello-world-docker-action@v1
         with:
           who-to-greet: ${{ github.actor }}
 
