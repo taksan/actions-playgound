@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     name: test matcher
     steps:
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - uses: actions/checkout@v2
       - name: Check whether build can be skipped
         id: skip-check
@@ -16,10 +22,6 @@ jobs:
         with:
           pattern: "\\[skip-build\\]"
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
 
       - uses: ./.github/workflows/subaction
         with:
