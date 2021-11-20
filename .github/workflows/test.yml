@@ -15,10 +15,11 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+
       - name: Check whether build can be skipped
         id: skip-check
-        uses: taksan/commit-message-matcher@v1
+        uses: taksan/commit-message-matcher@main
         with:
           pattern: "\\[skip-build\\]"
 
