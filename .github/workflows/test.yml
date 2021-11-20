@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check whether build can be skipped
         id: skip-check
-        uses: taksan/commit-message-matcher@v1
+        uses: taksan/commit-message-matcher@main
         with:
           pattern: "\\[skip-build\\]"
 
