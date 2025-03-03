@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     name: test matcher
     steps:
+      - name: test some commands
+        run: |
+          echo "::debug::Set the Octocat variable"
+          echo "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+          echo "::warning file=app.js,line=1,col=5,endColumn=7,title=YOUR-TITLE::Missing semicolon"
+          echo "::error file=app.js,line=1,col=5,endColumn=7,title=YOUR-TITLE::Missing semicolon"
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
 
       - name: Dump GitHub context
         env:
